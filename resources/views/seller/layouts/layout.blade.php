@@ -21,6 +21,8 @@
 
 	<link href="{{asset('admin_asset/css/app.css')}}" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+	@livewireStyles
 </head>
 
 <body>
@@ -54,7 +56,7 @@
 
 					<li class="sidebar-item {{ request()->routeIs('vendor.product.create') ? 'active' : '' }}">
 						<a class="sidebar-link" href="{{ route('vendor.product.create') }}">
-              <i class="align-middle" data-feather="plus"></i> <span class="align-middle">Add Product</span>
+              <i class="align-middle" data-feather="plus"></i> <span class="align-middle">Create</span>
             </a>
 					</li>
 
@@ -292,6 +294,7 @@
 
 	<script src="{{asset('admin_asset/js/app.js')}}"></script>
 
+	@livewireScripts
 </body>
 
 </html>

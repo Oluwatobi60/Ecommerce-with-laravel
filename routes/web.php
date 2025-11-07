@@ -113,7 +113,12 @@ Route::middleware(['auth', 'verified','rolemanager:vendor'])->group(function () 
 
      Route::controller(ProductSellerController::class)->group(function () {
       Route::get('/product/create','index')->name('vendor.product.create');
+      Route::post('/product/store', 'storeproduct')->name('vendor.product.store');
       Route::get('/product/manage','manage')->name('vendor.product.manage');
+      Route::get('/product/edit/{id}','edit')->name('product.edit');
+      Route::put('/product/update/{id}','update')->name('product.update');
+      Route::get('/product/view/{id}','view')->name('product.view');
+     /*  Route::delete('/product/image/{id}','deleteImage')->name('vendor.product.image.delete'); */
     });
 
      Route::controller(SellerStoreController::class)->group(function () {
