@@ -14,21 +14,26 @@ use App\Http\Controllers\Seller\SellerStoreController;
 use App\Http\Controllers\Customer\CustomerMainController;
 use App\Http\Controllers\MasterCategoryController;
 use App\Http\Controllers\MasterSubCategoryController;
+use App\Livewire\HomepageComponent;
+use App\Http\Controllers\HomePageController;
 
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+    //Home Page main controller
+    Route::controller(HomePageController::class)->group(function () {
+      Route::get('/','index')->name('home');
+      Route::get('/cart','cart')->name('cart.add');
+      Route::get('/category/{category_name}', 'showCategoryProducts')->name('productby.category');
+    });
 
 //admin routes
 Route::middleware(['auth', 'verified','rolemanager:admin'])->group(function () {
   Route::prefix('admin')->group(function () {
-
     //admin main controller
     Route::controller(AdminMainController::class)->group(function () {
       Route::get('/','index')->name('admin');
       Route::get('/settings','settings')->name('admin.settings');
+      Route::put('/setting/homepagesetting/update','updatehomepagesetting')->name('admin.homepagesettings.update');
       Route::get('/manage/users','manage_user')->name('admin.manage.user');
       Route::get('/manage/store','manage_store')->name('admin.manage.store');
       Route::get('/cart/history','cart_history')->name('admin.cart.history');
